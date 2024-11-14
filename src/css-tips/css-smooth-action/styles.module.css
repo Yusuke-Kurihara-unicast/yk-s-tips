@@ -1,0 +1,12 @@
+.container {
+    transition: margin 0.5s ease;
+    /* marginのトランジション設定 */
+}
+
+.margin15 {
+    margin-left: 15%;
+}
+
+.margin0 {
+    margin-left: 0;
+}

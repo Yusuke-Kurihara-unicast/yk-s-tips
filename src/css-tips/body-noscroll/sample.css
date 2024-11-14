@@ -1,0 +1,12 @@
+/* 全体のスクロールを無効化 */
+body {
+    overflow: hidden;
+}
+
+/* スクロールさせたい位置には付与*/
+.scrollable {
+    height: 300px;
+    /* スクロールする部分の高さを設定 */
+    overflow-y: auto;
+    /* スクロールを有効化 */
+}

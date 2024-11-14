@@ -1,0 +1,20 @@
+# 新しいプロジェクト作る時のメモ
+## 環境
+* React
+  * ノーマルなもの（以下も検討）
+  * next
+  * remix
+* TypeScript
+* vite
+
+## 入れておいた方が良い（と個人的に思っている）ライブラリ
+* react-router-dom
+  * v6のcreateBrowserRouterが好き
+* react-hook-form
+  * なくてもいいかと思っていたがzodの存在を知り、ほぼ確定でもいいかなと思った
+* zod
+  * formやテーブル要素のパースを作成できる。型付けに非常に便利。
+* HeadressなUI
+  * Mantaineなどの選択肢も多いのでわざと抽象的に表現
+* TanStack系
+  * Tableとか使いやすかった

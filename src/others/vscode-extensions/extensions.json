@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint", // ESLint - コードのエラーや警告表示
+        "esbenp.prettier-vscode", // Prettier - コードフォーマット
+        "eamodio.gitlens", // GitLens - Git履歴の確認
+        "bradlc.vscode-tailwindcss", // Tailwind CSS Intellisense - Tailwind用
+        "styled-components.vscode-styled-components", // CSS-in-JS対応
+        "ms-vscode.vscode-typescript-next", // TypeScript最新サポート
+        "ZixuanChen.vitest-explorer" // Vitestのテストエクスプローラー
+    ]
+}

@@ -1,0 +1,22 @@
+## AI tool(今使っている、気になっているやつ)
+* 検索
+  * https://felo.ai/ja/search
+    * 検索に検索を重ね深掘りしていく時
+  * https://www.genspark.ai/autopilotagent
+    * Factチェック
+  * https://mapify.so/ja/app/new
+    * ブレインストーミング(feloだけでも良いかも？)
+* プロジェクト開始時？
+  * https://gearindigo.app/create-project
+* 開発
+  * https://v0.dev/
+  * https://claude.ai/new
+  * https://bolt.new/
+    * ハンズオン:https://zenn.dev/trpd/articles/cfbd217c38dd7c
+* chatベースで
+  * https://chatgpt.com/
+  * https://gemini.google.com/
+* 画像生成
+  * https://www.recraft.ai/
+  * https://www.canva.com/design/DAGWbV5JTjE/bEsx0r8Va9I8hI6TDRVQQA/edit?ui=eyJFIjp7IkE_IjoiViIsIkIiOiJCIn0sIkciOnsiQiI6dHJ1ZX19
+  * https://www.seaart.ai/ja
