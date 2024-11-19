@@ -1,0 +1,8 @@
+// .env .env.staging などファイルごとの環境変数を分岐させた時（taileindのbuildも含む）
+"scripts": {
+    "build:style": "tailwind build src/styles/tailwind/tailwind.src.css -o src/styles/tailwind/tailwind.css",
+    "build:staging": "cross-env CI=false yarn build:style && CI=false vite build --mode staging",
+    "build:release": "cross-env CI=false yarn build:style && CI=false vite build --mode release",
+    "start": "npm run build:style && vite --port 3000",
+    "build": "vite build",
+}
