@@ -1,0 +1,8 @@
+/* MDN : https://developer.mozilla.org/ja/docs/Web/CSS/box-sizing */
+
+/* border-box : 要素の内側であるborderやpaddingを含めた状態で、指定されたwidthに収まるようにする */
+/* widthと組み合わせて親要素いっぱいに領域を確保したい時に使う */
+.sample {
+    width: 100%;
+    box-sizing: border-box;
+}
