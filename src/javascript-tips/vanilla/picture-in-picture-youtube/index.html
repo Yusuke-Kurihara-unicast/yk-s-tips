@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Picture-in-Picture</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Picture-in-Picture Player サンプル</h1>
+        
+        <!-- メインコンテンツエリア -->
+        <div class="main-content">
+            <p>スクロールしても右下に動画固定</p>
+            <div class="scroll-content">
+                <!-- スクロール用のダミーコンテンツ -->
+                <p>コンテンツ...</p>
+                <p>コンテンツ...</p>
+                <!-- 繰り返し -->
+            </div>
+        </div>
+
+        <!-- YouTube埋め込み動画 -->
+        <div id="player-container" class="player-container">
+            <div id="player"></div>
+            <button id="toggle-pip" class="toggle-button">最小化</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

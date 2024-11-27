@@ -10,6 +10,7 @@
   * https://gearindigo.app/create-project
 * 開発
   * https://v0.dev/
+  * https://lovable.dev/
   * https://claude.ai/new
   * https://bolt.new/
     * ハンズオン:https://zenn.dev/trpd/articles/cfbd217c38dd7c

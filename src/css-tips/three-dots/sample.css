@@ -1,0 +1,18 @@
+/* 参考：https://zenn.dev/milkandhoney995/articles/63eb778df55361 */
+div {
+    /* 通常 */
+    text-overflow: ellipsis;
+    /* ...を表示する */
+    white-space: nowrap;
+    /* 改行させない */
+    overflow: hidden;
+    /* 溢れた文字を隠す */
+}
+
+td,
+th {/* table内で3点リーダー */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 0; /* 追加  はtableタグがwidth指定を無視するかららしい*/
+}

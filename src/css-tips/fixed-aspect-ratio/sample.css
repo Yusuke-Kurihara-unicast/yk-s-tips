@@ -1,0 +1,62 @@
+/* 参考：https://qiita.com/ryounagaoka/items/a98f59347ed758743b8d */
+
+/* 画像の固定 */
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* divとか 
+#wrapper:beforeに設定したpadding-topの値によってアスペクト比をコントロールしているらしい
+以下の例では幅:高さの比を4:3にするために75%
+*/
+#wrapper {
+    position: relative;
+    width: 100%;
+}
+#wrapper:before {
+    content:"";
+    display: block;
+    padding-top: 75%; /* 高さを幅の75%に固定 */
+}
+#content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+/*
+例:
+<div id="wrapper">
+    <div id="content">hogehoge fugafuga</div>
+</div>
+*/
+
+
+/* iframe 
+devとかとほぼおなじ、#contentでwidthとheightに100%を指定
+*/
+#wrapper {
+    position: relative;
+    width: 100%;
+}
+#wrapper:before {
+    content:"";
+    display: block;
+    padding-top: 56.25%; /* 高さと幅の比を16:9に固定。9/16*100=56.25 */
+}
+#content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*
+例:
+<div id="wrapper">
+    <iframe id="content" src="https://youtube~~" frameborder="0"></iframe>
+</div>
+*/

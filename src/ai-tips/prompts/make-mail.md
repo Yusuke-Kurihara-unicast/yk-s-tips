@@ -90,22 +90,22 @@
 <previous_communications>過去のやり取り履歴</previous_communications>
 </recipient_info>
 <communication_context>
-<purpose>目的</purpose>
-<urgency>緊急度</priority>
-<sensitivity>機密度</sensitivity>
-<expected_outcome>期待される結果</expected_outcome>
+    <purpose>目的</purpose>
+    <urgency>緊急度</priority>
+    <sensitivity>機密度</sensitivity>
+    <expected_outcome>期待される結果</expected_outcome>
 </communication_context>
 </context_elements>
 </context_layer>
 <generation_layer>
 <processing_steps>
-<step>1. コンテキスト分析</step>
-<step>2. テンプレート選択</step>
-<step>3. カスタマイズ適用</step>
-<step>4. 内容生成</step>
-<step>5. 品質チェック</step>
-
+    <step>1. コンテキスト分析</step>
+    <step>2. テンプレート選択</step>
+    <step>3. カスタマイズ適用</step>
+    <step>4. 内容生成</step>
+    <step>5. 品質チェック</step>
 </processing_steps>
+
 <optimization_rules>
 <rule>簡潔性の確保</rule>
 <rule>文脈の一貫性維持</rule>

@@ -1,0 +1,47 @@
+/* 上向き ▲ */
+.up {
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+/* 右向き ▶︎ */
+.right {
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* 下向き ▼ */
+.down {
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* 左向き ◀︎ */
+.left {
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+/* 正三角形（上向） */
+.triangle {
+    height: calc(60px / 2 * tan(60deg));
+    width: 60px;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+/* ２等辺三角形（上向） */
+.triangle2 {
+    height: calc(60px / 2);
+    width: 60px;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+/* 鋭角三角形 */
+.acute-triangle {
+    height: 30px;
+    width: 60px;
+    clip-path: polygon(75% 0, 100% 100%, 0 100%);
+}
+
+/* 鈍角三角形 */
+.obtuse-triangle {
+    height: 30px;
+    width: 60px;
+    clip-path: polygon(100% 0, 50% 100%, 0 100%);
+}

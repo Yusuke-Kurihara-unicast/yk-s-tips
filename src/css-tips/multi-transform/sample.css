@@ -1,0 +1,16 @@
+/* 正しいtransformの複数指定の方法 */
+img {
+    transform: translate(100px, 100px) rotate(-45deg);
+}
+
+/* 上書きされてしまう例 */
+/* 誤り１ */
+img {
+    transform: translate(100px, 100px);
+    transform: rotate(-45deg);
+}
+
+/* 誤り２ */
+img {
+    transform: translate(100px, 100px), rotate(-45deg);
+}

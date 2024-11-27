@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+.mode-select {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#recordingVideo, #preview {
+    width: 100%;
+    max-width: 640px;
+    margin: 20px 0;
+}
+
+.error {
+    color: red;
+    margin: 10px 0;
+}
+
+#audioPlayer {
+    margin: 20px 0;
+}
+
+.recording-mode {
+    margin: 20px 0;
+}
+
+select {
+    padding: 8px;
+    font-size: 16px;
+    margin: 0 10px;
+}
