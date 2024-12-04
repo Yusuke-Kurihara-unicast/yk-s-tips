@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ルートマップ</title>
+    <style>
+        .container {
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            padding: 16px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        .button {
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .button:hover:not(:disabled) {
+            background: #f9fafb;
+        }
+
+        #canvas {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: crosshair;
+            background: #f8fafc;
+        }
+
+        .legend {
+            margin-top: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pin {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .pin-start {
+            background: #22c55e;
+        }
+
+        .pin-middle {
+            background: #3b82f6;
+        }
+
+        .pin-end {
+            background: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">ルートマップ</h1>
+                <div>
+                    <button id="resetBtn" class="button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                            <path d="M3 3v5h5" />
+                        </svg>
+                    </button>
+                    <button id="deleteBtn" class="button" disabled>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 6h18" />
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="card-content">
+                <canvas id="canvas" width="800" height="600"></canvas>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="pin pin-start"></div>
+                        <span>開始地点</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="pin pin-middle"></div>
+                        <span>中間地点</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="pin pin-end"></div>
+                        <span>終了地点</span>
+                    </div>
+                    <div class="legend-item" style="margin-left: auto">
+                        <span id="totalDistance">総距離: 0px</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class RouteMap {
+            constructor() {
+                this.canvas = document.getElementById('canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.pins = [];
+                this.isDragging = false;
+                this.draggedPinIndex = null;
+                this.selectedPin = null;
+
+                // グリッド背景の描画
+                this.drawBackground();
+                this.setupEventListeners();
+            }
+
+            drawBackground() {
+                // 背景色を設定
+                this.ctx.fillStyle = '#f8fafc';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // グリッドを描画
+                this.ctx.strokeStyle = '#e2e8f0';
+                this.ctx.lineWidth = 1;
+
+                // 縦線
+                for (let x = 0; x <= this.canvas.width; x += 40) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(x, 0);
+                    this.ctx.lineTo(x, this.canvas.height);
+                    this.ctx.stroke();
+                }
+
+                // 横線
+                for (let y = 0; y <= this.canvas.height; y += 40) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, y);
+                    this.ctx.lineTo(this.canvas.width, y);
+                    this.ctx.stroke();
+                }
+            }
+
+            setupEventListeners() {
+                this.canvas.addEventListener('click', this.handleClick.bind(this));
+                this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
+                this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
+                this.canvas.addEventListener('mouseleave', this.handleMouseUp.bind(this));
+
+                document.getElementById('resetBtn').addEventListener('click', () => {
+                    this.pins = [];
+                    this.selectedPin = null;
+                    this.updateDeleteButton();
+                    this.draw();
+                });
+
+                document.getElementById('deleteBtn').addEventListener('click', () => {
+                    if (this.selectedPin !== null) {
+                        this.pins = this.pins.filter((_, index) => index !== this.selectedPin);
+                        this.selectedPin = null;
+                        this.updateDeleteButton();
+                        this.draw();
+                    }
+                });
+            }
+
+            updateDeleteButton() {
+                const deleteBtn = document.getElementById('deleteBtn');
+                deleteBtn.disabled = this.selectedPin === null;
+            }
+
+            calculateDistance(point1, point2) {
+                return Math.sqrt(
+                    Math.pow(point2.x - point1.x, 2) +
+                    Math.pow(point2.y - point1.y, 2)
+                );
+            }
+
+            calculateTotalDistance() {
+                if (this.pins.length < 2) return 0;
+
+                let total = 0;
+                for (let i = 1; i < this.pins.length; i++) {
+                    total += this.calculateDistance(this.pins[i - 1], this.pins[i]);
+                }
+                return Math.round(total);
+            }
+
+            draw() {
+                // 背景を再描画
+                this.drawBackground();
+
+                // ライン描画
+                if (this.pins.length > 1) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.pins[0].x, this.pins[0].y);
+
+                    for (let i = 1; i < this.pins.length; i++) {
+                        this.ctx.lineTo(this.pins[i].x, this.pins[i].y);
+
+                        // 距離表示
+                        const midX = (this.pins[i].x + this.pins[i - 1].x) / 2;
+                        const midY = (this.pins[i].y + this.pins[i - 1].y) / 2;
+                        const distance = Math.round(this.calculateDistance(this.pins[i - 1], this.pins[i]));
+
+                        this.ctx.save();
+                        this.ctx.fillStyle = 'white';
+                        this.ctx.strokeStyle = 'black';
+                        this.ctx.lineWidth = 2;
+                        this.ctx.font = '12px Arial';
+                        this.ctx.strokeText(`${distance}px`, midX, midY);
+                        this.ctx.fillText(`${distance}px`, midX, midY);
+                        this.ctx.restore();
+                    }
+
+                    this.ctx.strokeStyle = '#2563eb';
+                    this.ctx.lineWidth = 2;
+                    this.ctx.stroke();
+                }
+
+                // ピン描画
+                this.pins.forEach((pin, index) => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(pin.x, pin.y, 6, 0, Math.PI * 2);
+
+                    if (index === this.selectedPin) {
+                        this.ctx.strokeStyle = '#000';
+                        this.ctx.lineWidth = 2;
+                        this.ctx.stroke();
+                    }
+
+                    if (index === 0) {
+                        this.ctx.fillStyle = '#22c55e';
+                    } else if (index === this.pins.length - 1) {
+                        this.ctx.fillStyle = '#ef4444';
+                    } else {
+                        this.ctx.fillStyle = '#3b82f6';
+                    }
+
+                    this.ctx.fill();
+                });
+
+                // 総距離更新
+                const totalDistance = document.getElementById('totalDistance');
+                totalDistance.textContent = `総距離: ${this.calculateTotalDistance()}px`;
+            }
+
+            handleClick(e) {
+                if (this.isDragging) return;
+
+                const rect = this.canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const clickedPinIndex = this.pins.findIndex(pin =>
+                    this.calculateDistance(pin, { x, y }) < 10
+                );
+
+                if (clickedPinIndex !== -1) {
+                    this.selectedPin = clickedPinIndex;
+                } else {
+                    this.pins.push({ x, y });
+                    this.selectedPin = null;
+                }
+
+                this.updateDeleteButton();
+                this.draw();
+            }
+
+            handleMouseDown(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const pinIndex = this.pins.findIndex(pin =>
+                    this.calculateDistance(pin, { x, y }) < 10
+                );
+
+                if (pinIndex !== -1) {
+                    this.isDragging = true;
+                    this.draggedPinIndex = pinIndex;
+                }
+            }
+
+            handleMouseMove(e) {
+                if (!this.isDragging || this.draggedPinIndex === null) return;
+
+                const rect = this.canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                this.pins[this.draggedPinIndex] = { x, y };
+                this.draw();
+            }
+
+            handleMouseUp() {
+                this.isDragging = false;
+                this.draggedPinIndex = null;
+            }
+        }
+
+        // アプリケーション初期化
+        window.addEventListener('load', () => {
+            new RouteMap();
+        });
+    </script>
+</body>
+
+</html>

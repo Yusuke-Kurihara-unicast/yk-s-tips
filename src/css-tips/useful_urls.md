@@ -5,3 +5,5 @@
   * https://www.colordic.org/
 * UIパーツのサンプルがいっぱい
   * https://uiverse.io/
+* cssだけでいろんな図形がいっぱい
+  * https://css-shape.com/
