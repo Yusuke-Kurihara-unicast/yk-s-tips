@@ -1,5 +1,6 @@
-## AITool一覧（っ栗原が見つけたやつだと最大の掲載数）
-* https://ai.cryptobk.jp/aiservices/categories/photo_editing_processing
+## AIToolを探す
+  * https://ai.cryptobk.jp/aiservices/categories/photo_editing_processing
+  * https://ai-gallery.jp/
 
 ## AI tool(今使っている、気になっているやつ)
 * 検索
