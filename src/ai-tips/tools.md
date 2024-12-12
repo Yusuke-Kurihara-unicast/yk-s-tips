@@ -1,3 +1,6 @@
+## AITool一覧（っ栗原が見つけたやつだと最大の掲載数）
+* https://ai.cryptobk.jp/aiservices/categories/photo_editing_processing
+
 ## AI tool(今使っている、気になっているやつ)
 * 検索
   * https://felo.ai/ja/search
@@ -18,6 +21,19 @@
   * https://chatgpt.com/
   * https://gemini.google.com/
 * 画像生成
+  * https://brandmark.io/
+    * ロゴ生成だけど..
+  * https://flux1.ai/ja
+  * https://leonardo.ai/
   * https://www.recraft.ai/
   * https://www.canva.com/design/DAGWbV5JTjE/bEsx0r8Va9I8hI6TDRVQQA/edit?ui=eyJFIjp7IkE_IjoiViIsIkIiOiJCIn0sIkciOnsiQiI6dHJ1ZX19
   * https://www.seaart.ai/ja
+* プログラミングやAPIを使えばできるほぼ全てのことを実行できる対話型のOSS
+  * https://qiita.com/fuyu_quant/items/e531b5d1f87a8640d10e
+* streamlit
+  * https://www.creationline.com/tech-blog/author/higuchi/75652
+  * https://qiita.com/minorun365/items/84bef6f06e450a310a6a
+* Cades
+  * https://cades.dev/
+  * モバイルアプリも開発できる
+  * ただコードをダウンロードとかしようと思うと有料プランにしないといけない..

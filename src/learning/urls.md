@@ -4,3 +4,28 @@
   * https://www.freecodecamp.org/japanese/learn/front-end-development-libraries/#react
 * cssの情報
   * https://moderncss.dev/topics/
+* dockerがブラウザ上で学べる
+  * https://y-ohgi.com/introduction-docker/
+* 数式をjavascriptでどう表すか
+  * https://math4devs.com/
+* ネットワークの基本を学べる
+  * https://www.infraexpert.com/study/
+* 無料学習教材。認定証も出る！
+  * https://www.freecodecamp.org/japanese/
+* ここも無料
+  * https://www.w3schools.com/
+* web開発を学ぶ
+  * https://web.dev/javascript?hl=ja
+* c++
+  * https://rinatz.github.io/cpp-book/
+* webデザインのスキルチェク用
+  * https://webdesigner-go.com/coding-practice/
+* セキュリティの勉強に
+  * https://tryhackme.com/
+* gitの操作をWebで練習できる
+  * https://learngitbranching.js.org/?locale=ja
+  * 合わせて読んでおきたい
+    * https://qiita.com/Sicut_study/items/0318cc136c189b179b7f
+* AWS学習
+  * https://qiita.com/toma_shohei/items/b7a001d26bd988d52021
+  * https://qiita.com/kimuni-i/items/3e484bb40cc3a922400b

@@ -5,3 +5,7 @@
   * https://unsplash.com/ja
 * デザイナーさんSNS（閲覧できる）
   * https://dribbble.com/
+* スライドデザイン集
+  * https://www.slideland.tech/
+  * https://design-sli.de/
+* UI
